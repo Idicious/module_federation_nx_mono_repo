@@ -11,15 +11,18 @@
     ".eslintrc.json": "*",
     "nx.json": "*"
   },
-  "projects": {
-    "shell": {
-      "tags": []
+  "cli": {
+    "packageManager": "yarn",
+    "defaultCollection": "@nrwl/angular"
+  },
+  "generators": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "karma",
+      "e2eTestRunner": "protractor"
     },
-    "mfe1": {
-      "tags": []
-    },
-    "auth-lib": {
-      "tags": []
+    "@nrwl/angular:library": {
+      "unitTestRunner": "karma"
     }
-  }
+  },
+  "defaultProject": "mfe1"
 }

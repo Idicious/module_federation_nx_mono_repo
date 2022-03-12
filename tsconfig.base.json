@@ -11,14 +11,9 @@
     "importHelpers": true,
     "target": "es2020",
     "module": "es2020",
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "lib": ["es2018", "dom"],
     "paths": {
-      "@demo/auth-lib": [
-        "libs/auth-lib/src/index.ts"
-      ]
+      "@demo/auth-lib": ["libs/auth-lib/src/index.ts"]
     },
     "rootDir": "."
   }

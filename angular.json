@@ -3,6 +3,45 @@
   "version": 1,
   "newProjectRoot": "",
   "projects": {
+    "auth-lib": {
+      "projectType": "library",
+      "root": "libs/auth-lib",
+      "sourceRoot": "libs/auth-lib/src",
+      "prefix": "mfe1",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/auth-lib/tsconfig.lib.json",
+            "project": "libs/auth-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/auth-lib/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/auth-lib/tsconfig.lib.json",
+              "libs/auth-lib/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/auth-lib/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/auth-lib/src/test.ts",
+            "tsConfig": "libs/auth-lib/tsconfig.spec.json",
+            "karmaConfig": "libs/auth-lib/karma.conf.js"
+          }
+        }
+      },
+      "schematics": {}
+    },
     "mfe1": {
       "projectType": "application",
       "schematics": {},
@@ -19,10 +58,7 @@
             "polyfills": "apps/mfe1/src/polyfills.ts",
             "tsConfig": "apps/mfe1/tsconfig.json",
             "aot": true,
-            "assets": [
-              "apps/mfe1/src/favicon.ico",
-              "apps/mfe1/src/assets"
-            ],
+            "assets": ["apps/mfe1/src/favicon.ico", "apps/mfe1/src/assets"],
             "styles": [],
             "scripts": [],
             "extraWebpackConfig": "apps/mfe1/webpack.config.js"
@@ -76,7 +112,6 @@
               "browserTarget": "mfe1:build:development",
               "extraWebpackConfig": "apps/mfe1/webpack.prod.config.js"
             },
-
             "production": {
               "browserTarget": "mfe1:build:production",
               "extraWebpackConfig": "apps/mfe1/webpack.prod.config.js"
@@ -97,13 +132,8 @@
             "polyfills": "apps/mfe1/src/polyfills.ts",
             "tsConfig": "apps/mfe1/tsconfig.spec.json",
             "karmaConfig": "apps/mfe1/karma.conf.js",
-            "assets": [
-              "apps/mfe1/src/favicon.ico",
-              "apps/mfe1/src/assets"
-            ],
-            "styles": [
-              "apps/mfe1/src/styles.css"
-            ],
+            "assets": ["apps/mfe1/src/favicon.ico", "apps/mfe1/src/assets"],
+            "styles": ["apps/mfe1/src/styles.css"],
             "scripts": [],
             "extraWebpackConfig": "apps/mfe1/webpack.config.js"
           }
@@ -115,9 +145,7 @@
               "apps/mfe1/tsconfig.json",
               "apps/mfe1/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -138,10 +166,7 @@
             "polyfills": "apps/shell/src/polyfills.ts",
             "tsConfig": "apps/shell/tsconfig.json",
             "aot": true,
-            "assets": [
-              "apps/shell/src/favicon.ico",
-              "apps/shell/src/assets"
-            ],
+            "assets": ["apps/shell/src/favicon.ico", "apps/shell/src/assets"],
             "styles": ["apps/shell/src/styles.css"],
             "scripts": [],
             "extraWebpackConfig": "apps/shell/webpack.config.js"
@@ -152,7 +177,6 @@
               "sourceMap": true,
               "buildOptimizer": false
             },
-
             "production": {
               "fileReplacements": [
                 {
@@ -216,10 +240,7 @@
             "polyfills": "apps/shell/src/polyfills.ts",
             "tsConfig": "apps/shell/tsconfig.spec.json",
             "karmaConfig": "apps/shell/karma.conf.js",
-            "assets": [
-              "apps/shell/src/favicon.ico",
-              "apps/shell/src/assets"
-            ],
+            "assets": ["apps/shell/src/favicon.ico", "apps/shell/src/assets"],
             "styles": [],
             "scripts": [],
             "extraWebpackConfig": "apps/shell/webpack.config.js"
@@ -232,60 +253,11 @@
               "apps/shell/tsconfig.json",
               "apps/shell/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
-    },
-    "auth-lib": {
-      "projectType": "library",
-      "root": "libs/auth-lib",
-      "sourceRoot": "libs/auth-lib/src",
-      "prefix": "mfe1",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
-          "options": {
-            "tsConfig": "libs/auth-lib/tsconfig.lib.json",
-            "project": "libs/auth-lib/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/auth-lib/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/auth-lib/tsconfig.lib.json",
-              "libs/auth-lib/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/auth-lib/**/*"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "libs/auth-lib/src/test.ts",
-            "tsConfig": "libs/auth-lib/tsconfig.spec.json",
-            "karmaConfig": "libs/auth-lib/karma.conf.js"
-          }
-        }
-      },
-      "schematics": {}
     }
-  },
-  "defaultProject": "mfe1",
-  "cli": {
-    "packageManager": "yarn",
-    "defaultCollection": "@nrwl/angular"
   },
   "schematics": {
     "@nrwl/angular:application": {
